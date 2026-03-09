@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 00:16:53 by ckappe            #+#    #+#             */
-/*   Updated: 2026/03/04 00:41:47 by ckappe           ###   ########.fr       */
+/*   Updated: 2026/03/09 19:21:17 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,50 @@
 
 int main(void)
 {
-	// Two independent objects.
+	std::cout << "\n========== Basic Construction and Actions ==========\n" << std::endl;
 	ClapTrap alpha("Alpha");
 	ClapTrap beta("Beta");
 
-	// Basic actions: attack, take damage, repair
 	alpha.attack("Beta");
-	beta.takeDamage(3);
-	beta.beRepaired(2);
+	beta.takeDamage(0);
+	beta.beRepaired(5);
+	alpha.beRepaired(3);
 
-	// Spend Alpha's energy with repeated attacks
+	std::cout << "\n========== Energy Depletion Test ==========\n" << std::endl;
+	ClapTrap charlie("Charlie");
+	std::cout << "Performing 10 attacks to deplete energy...\n" << std::endl;
 	for (int i = 0; i < 10; i++)
-		alpha.attack("training_dummy");
+		charlie.attack("dummy");
+	
+	std::cout << "\nAttempting actions with no energy:" << std::endl;
+	charlie.attack("target");
+	charlie.beRepaired(5);
 
-	// This repair should fail because Alpha has no energy left
-	alpha.beRepaired(1);
+	std::cout << "\n========== Health Depletion Test ==========\n" << std::endl;
+	ClapTrap delta("Delta");
+	delta.takeDamage(10);
+	
+	std::cout << "\nAttempting actions at 0 HP:" << std::endl;
+	delta.attack("target");
+	delta.beRepaired(5);
 
-	// At 0 HP, actions are blocked.
-	beta.takeDamage(50);
-	beta.attack("Alpha");
-	beta.beRepaired(10);
+	std::cout << "\n========== Copy Constructor Test ==========\n" << std::endl;
+	ClapTrap original("Original");
+	original.attack("target");
+	ClapTrap copy(original);
+	std::cout << "\nCopy attacking:" << std::endl;
+	copy.attack("target");
 
+	std::cout << "\n========== Assignment Operator Test ==========\n" << std::endl;
+	ClapTrap echo("Echo");
+	echo.attack("target");
+	ClapTrap foxtrot("Foxtrot");
+	foxtrot = echo;
+	std::cout << "\nAfter assignment:" << std::endl;
+	foxtrot.attack("target");
+
+	std::cout << "\n========== Destructor Test ==========\n" << std::endl;
+	std::cout << "Objects will be destroyed now:\n" << std::endl;
 	return (0);
 }
 

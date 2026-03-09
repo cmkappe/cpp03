@@ -15,6 +15,10 @@ class FragTrap : public ClapTrap {
 		// Destructor
 		~FragTrap();
 
+		// FragTrap-specific messages for damage/repair
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+
 		// Special ability: asks for a positive high five.
 		void highFivesGuys(void);
 };

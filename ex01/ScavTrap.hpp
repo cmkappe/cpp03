@@ -17,6 +17,10 @@ class ScavTrap : public ClapTrap {
 
 		// Override attack
 		void attack(const std::string& target);
+		// ScavTrap-specific messages for damage/repair
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+		
 		// Special ability
 		void guardGate();
 };

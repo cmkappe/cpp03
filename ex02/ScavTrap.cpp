@@ -1,6 +1,20 @@
-#include "ScavTrap.hpp"
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/08 22:19:41 by ckappe            #+#    #+#             */
+/*   Updated: 2026/03/09 19:21:50 by ckappe           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ScavTrap.hpp"
+
+// -----------------------------------------------------
+// *** CONSTRUCTOR & DESTRUCTOR ***
+// -----------------------------------------------------
 // Default constructor
 ScavTrap::ScavTrap() : ClapTrap("default_scav")
 {
@@ -22,7 +36,6 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 // Copy constructor
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 {
-	*this = other;
 	std::cout << "ScavTrap copy constructor called" << std::endl;
 }
 
@@ -40,6 +53,10 @@ ScavTrap::~ScavTrap()
 {
 	std::cout << "ScavTrap destructor called for " << _name << std::endl;
 }
+
+// -----------------------------------------------------
+// *** MEMBER FUNCTION ***
+// -----------------------------------------------------
 
 // Attack action: same energy/HP checks, ScavTrap-specific message
 void ScavTrap::attack(const std::string& target)

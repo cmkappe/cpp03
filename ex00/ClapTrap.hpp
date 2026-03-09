@@ -24,9 +24,9 @@ class ClapTrap{
 		
 	private:
 		std::string	_name;
-		int			_hitPoints;
-		int			_energyPoints;
-		int			_attackDamage;
+		int			_hitPoints;		// representing health of ClapTrap
+		int			_energyPoints;	// energy of ClapTrap
+		int			_attackDamage;	// attack damage of ClapTrap	
 };
 
 
