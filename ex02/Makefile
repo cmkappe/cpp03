@@ -4,7 +4,8 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
-OBJ = $(SRC:.cpp=.o)
+OBJDIR = obj
+OBJ = $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
 RM = rm -f
 
@@ -13,11 +14,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
+$(OBJDIR)/%.o: %.cpp ClapTrap.hpp ScavTrap.hpp FragTrap.hpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
 clean:
-	$(RM) $(OBJ)
+	$(RM) -r $(OBJDIR)
 
 fclean: clean
 	$(RM) $(NAME)
